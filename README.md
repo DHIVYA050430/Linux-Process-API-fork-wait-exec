@@ -43,17 +43,11 @@ int main(void)
 	printf("The process id: %d\n",process_id);
 	printf("The process id of parent function: %d\n",p_process_id);
 	return 0; }
+
 ```
 ## OUTPUT
-$ ./pidcheck.o 
-The process id: 6919
-The process id of parent function: 6860
+![output 1](https://github.com/DHIVYA050430/Linux-Process-API-fork-wait-exec/assets/147141546/3f71450a-8bbe-4274-9719-2b06214cfde5)
 
-
-$ ps 
-    PID TTY          TIME CMD
-   6860 pts/0    00:00:00 bash
-   6924 pts/0    00:00:00 ps
 
 ## C Program to create new process using Linux API system calls fork() and exit()
 ```
@@ -73,40 +67,26 @@ exit(0);}
 }
 ```
 ## OUTPUT
-$ ./forkcheck.o 
-I am parent, my pid is 7029
-Iam child my pid is 7030
-My parent pid is:7029
+![output 2](https://github.com/DHIVYA050430/Linux-Process-API-fork-wait-exec/assets/147141546/c93568a4-fa43-4461-9852-09206fe03100)
+
 
 ## C Program to execute Linux system commands using Linux API system calls exec() family
 ```
+
+#include <unistd.h>
+#include <stdio.h>
 #include <stdlib.h>
-#include <sys/wait.h>
-#include <sys/types.h>
 int main()
-{       int status;
-        printf("Running ps with execlp\n");
-        execl("ps", "ps", "ax", NULL);
-        wait(&status);
-        if (WIFEXITED(status))
-                printf("child exited with status of %d\n", WEXITSTATUS(status));
-        else
-                puts("child did not exit successfully\n");
-        printf("Done.\n");
-printf("Running ps with execlp. Now with path specified\n");
-        execl("/bin/ps", "ps", "ax", NULL);
-        wait(&status);
-        if (WIFEXITED(status))
-                printf("child exited with status of %d\n", WEXITSTATUS(status));
-        else
-                puts("child did not exit successfully\n");
-        printf("Done.\n");
-        exit(0);}
+{
+	printf("Running ps with execlp\n");
+	execlp("ps", "ps", "ax", NULL);
+	printf("Done.\n");
+	exit(0);
+}
+
 ```
-## OUTPUT
-$ ./execcheck2.o 
-Running ps with execlp
-child exited with status of 0
+## OUTPUT!
+![output 3](https://github.com/DHIVYA050430/Linux-Process-API-fork-wait-exec/assets/147141546/bfe15db3-df3f-46c3-b0ce-9b1b1c4198f3)
 
 # RESULT:
 The programs are executed successfully.
